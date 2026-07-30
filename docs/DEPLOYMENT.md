@@ -178,6 +178,7 @@ Work through this once, on the real URL rather than `localhost`:
    Pages is **case-sensitive**: `IMG_1234.JPG` ≠ `img_1234.jpg`.
 3. **Search, filters and sort** work, and the URL updates as you use them.
 4. **Open an item** → the modal shows the gallery, then check:
+   - clicking the photo opens the full-screen viewer, and scroll / double-click / pinch zoom it,
    - **Contact Seller on WhatsApp** opens a chat with the right number and a filled-in message,
    - **Make an Offer** accepts an amount and puts it in the message,
    - **Share** opens the share sheet (mobile) or says "Link copied" (desktop),

@@ -225,7 +225,7 @@
 
             <button class="icon-btn gallery__nav gallery__nav--prev" id="modal-prev" type="button" aria-label="Previous photo"></button>
             <button class="icon-btn gallery__nav gallery__nav--next" id="modal-next" type="button" aria-label="Next photo"></button>
-            <button class="icon-btn gallery__zoom" id="modal-zoom" type="button" aria-label="View photo full screen"></button>
+            <button class="icon-btn gallery__zoom" id="modal-zoom" type="button" aria-label="Open photo full screen to zoom"></button>
 
             <p class="gallery__counter" id="modal-counter" aria-live="polite">1 / 1</p>
           </div>
@@ -328,6 +328,18 @@
       <button class="icon-btn lightbox__nav lightbox__nav--prev" id="lightbox-prev" type="button" data-step="-1" aria-label="Previous photo"></button>
       <button class="icon-btn lightbox__nav lightbox__nav--next" id="lightbox-next" type="button" data-step="1" aria-label="Next photo"></button>
       <p class="lightbox__counter" id="lightbox-counter" aria-live="polite"></p>
+
+      <!-- Zoom controls. Scroll, double-click, drag and pinch also work. -->
+      <div class="lightbox__tools" role="group" aria-label="Zoom controls">
+        <button class="icon-btn" id="zoom-out" type="button" data-zoom="out" aria-label="Zoom out"></button>
+        <output class="lightbox__zoom-level" id="zoom-level" for="zoom-out zoom-in">100%</output>
+        <button class="icon-btn" id="zoom-in" type="button" data-zoom="in" aria-label="Zoom in"></button>
+        <button class="icon-btn" id="zoom-reset" type="button" data-zoom="reset" aria-label="Reset zoom to fit"></button>
+      </div>
+
+      <p class="lightbox__hint" id="lightbox-hint">
+        Scroll or double-click to zoom · drag to move · <kbd>0</kbd> to reset
+      </p>
     </div>
 
     <!-- ====================================================================

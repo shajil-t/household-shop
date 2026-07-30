@@ -35,6 +35,13 @@ export const ICONS = Object.freeze({
 
   expand: svg('<path d="M9 4H4v5M15 4h5v5M15 20h5v-5M9 20H4v-5"/>'),
 
+  /* Fit-to-screen: arrows pointing inwards. */
+  contract: svg('<path d="M4 9h5V4M20 9h-5V4M20 15h-5v5M4 15h5v5"/>'),
+
+  zoomIn: svg('<circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-3.5-3.5"/>'),
+
+  zoomOut: svg('<circle cx="11" cy="11" r="7"/><path d="M8 11h6M20 20l-3.5-3.5"/>'),
+
   check: svg('<path d="M5 13l4 4L19 7"/>'),
 
   share: svg(

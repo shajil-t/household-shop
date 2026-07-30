@@ -24,6 +24,7 @@ import {
   wrapIndex,
 } from './utils.js';
 import { setCarouselsPaused } from './render.js';
+import { createZoomController } from './zoom.js';
 
 const STATUS_LABELS = Object.freeze({
   available: 'Available',
@@ -55,6 +56,8 @@ const session = {
 const lightbox = {
   open: false,
   releaseFocus: null,
+  /** Zoom/pan controller for the full-screen image; created in initModal. */
+  zoom: null,
 };
 
 /* -------------------------------------------------------------------------- */
@@ -94,6 +97,10 @@ export function initModal() {
     lightbox: qs('#lightbox'),
     lightboxImage: qs('#lightbox-image'),
     lightboxCounter: qs('#lightbox-counter'),
+    zoomIn: qs('#zoom-in'),
+    zoomOut: qs('#zoom-out'),
+    zoomReset: qs('#zoom-reset'),
+    zoomLevel: qs('#zoom-level'),
   };
 
   attachImageFallback(dom.image);
@@ -110,6 +117,9 @@ export function initModal() {
   qs('#bid-icon').innerHTML = ICONS.offer;
   qs('#bid-submit-icon').innerHTML = ICONS.whatsapp;
   qs('#share-icon').innerHTML = ICONS.share;
+  qs('#zoom-in').innerHTML = ICONS.zoomIn;
+  qs('#zoom-out').innerHTML = ICONS.zoomOut;
+  qs('#zoom-reset').innerHTML = ICONS.contract;
 
   /* --- Item modal -------------------------------------------------------- */
 
@@ -151,6 +161,30 @@ export function initModal() {
 
   attachImageFallback(dom.lightboxImage);
 
+  /* --- Lightbox zoom ----------------------------------------------------- */
+
+  lightbox.zoom = createZoomController({
+    image: dom.lightboxImage,
+    container: dom.lightbox,
+    onChange: paintZoomLevel,
+  });
+  // A non-silent reset paints the readout and the button states once, up front.
+  lightbox.zoom.reset();
+
+  // "Scroll to zoom" is meaningless on a phone; describe the real gesture.
+  if (window.matchMedia('(hover: none)').matches) {
+    qs('#lightbox-hint').textContent = 'Pinch or double-tap to zoom · drag to move';
+  }
+
+  // One delegated handler for the three zoom buttons.
+  dom.lightbox.addEventListener('click', (event) => {
+    const action = event.target.closest('[data-zoom]')?.dataset.zoom;
+    if (!action) return;
+    if (action === 'in') lightbox.zoom.zoomIn();
+    else if (action === 'out') lightbox.zoom.zoomOut();
+    else lightbox.zoom.reset();
+  });
+
   /* --- Keyboard ---------------------------------------------------------- */
 
   // One document-level listener handles both layers; the deepest open layer
@@ -179,6 +213,27 @@ function onKeydown(event) {
       if (session.images.length > 1 && !session.bidOpen) {
         event.preventDefault();
         step(1);
+      }
+      break;
+    // Zoom shortcuts only make sense while the full-screen viewer is up.
+    case '+':
+    case '=':
+      if (lightbox.open) {
+        event.preventDefault();
+        lightbox.zoom.zoomIn();
+      }
+      break;
+    case '-':
+    case '_':
+      if (lightbox.open) {
+        event.preventDefault();
+        lightbox.zoom.zoomOut();
+      }
+      break;
+    case '0':
+      if (lightbox.open) {
+        event.preventDefault();
+        lightbox.zoom.reset();
       }
       break;
     default:
@@ -612,6 +667,8 @@ function showImage(index, { force = false } = {}) {
   }
 
   if (lightbox.open) {
+    // A new photo always starts fit-to-screen.
+    lightbox.zoom.reset();
     dom.lightboxImage.classList.remove('is-placeholder');
     dom.lightboxImage.src = src;
     dom.lightboxImage.alt = dom.image.alt;
@@ -628,10 +685,31 @@ function step(delta) {
 /* Lightbox                                                                   */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * Reflects the zoom level in the toolbar.
+ *
+ * Limits are shown with `aria-disabled` rather than `disabled`, so a button the
+ * visitor is currently focused on never drops out of the focus trap when it
+ * reaches a limit. Out-of-range calls are no-ops in the controller anyway.
+ *
+ * @param {{scale: number, min: number, max: number}} state
+ */
+function paintZoomLevel({ scale, min, max }) {
+  dom.zoomLevel.value = `${Math.round(scale * 100)}%`;
+
+  const atMin = scale <= min + 0.001;
+  const atMax = scale >= max - 0.001;
+
+  dom.zoomOut.setAttribute('aria-disabled', String(atMin));
+  dom.zoomReset.setAttribute('aria-disabled', String(atMin));
+  dom.zoomIn.setAttribute('aria-disabled', String(atMax));
+}
+
 /** Opens the full-screen viewer on the current image. */
 function openLightbox() {
   if (!isOpen() || lightbox.open) return;
 
+  lightbox.zoom.reset();
   dom.lightboxImage.classList.remove('is-placeholder');
   dom.lightboxImage.src = session.images[session.index];
   dom.lightboxImage.alt = dom.image.alt;
@@ -654,6 +732,7 @@ function closeLightbox() {
   dom.lightbox.classList.remove('is-open');
   hideAfterTransition(dom.lightbox);
   lightbox.open = false;
+  lightbox.zoom.reset({ silent: true });
 
   scrollLock.unlock();
   lightbox.releaseFocus?.();

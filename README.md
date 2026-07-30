@@ -44,6 +44,7 @@ Built with vanilla HTML, CSS and ES2022 modules. No framework, no jQuery, no CSS
 │   ├── render.js               Cards, skeletons, carousels, filter controls, empty state
 │   ├── modal.js                Detail modal + lightbox behaviour
 │   ├── filters.js              View state, URL sync, search/filter/sort logic
+│   ├── zoom.js                 Zoom/pan controller for the full-screen viewer
 │   ├── icons.js                Inline SVG icon set
 │   └── utils.js                Formatting, debounce, focus trap, lazy loading helpers
 ├── data/
@@ -220,6 +221,21 @@ either opens WhatsApp or hands the link to the visitor.
 | **Make an Offer** | Expands a small form, validates the amount, then opens WhatsApp with an enquiry that states the asking price *and* the visitor's offer |
 | **Share** | Uses the device's native share sheet (WhatsApp, Messages, email…) and falls back to copying the link, confirming with "Link copied" on the button |
 
+### The full-screen photo viewer
+
+Clicking the modal photo (or its expand button) opens the lightbox, which zooms:
+
+| Gesture | Result |
+| --- | --- |
+| Scroll / trackpad | Zoom towards the pointer, up to 5× |
+| Double click or double tap | Toggle between fit and 2.5× at that spot |
+| Drag | Pan, once zoomed in |
+| Two-finger pinch | Zoom towards the midpoint |
+| Toolbar, or `+` `-` `0` | Zoom in, out, reset to fit |
+
+Panning is clamped so the photo cannot be dragged out of the frame, a drag never counts as a
+click on the backdrop, and changing photo or closing the viewer always returns to fit.
+
 Details worth knowing:
 
 - **Offers are messages, not bids.** Nothing is stored, ranked or recorded anywhere — the
@@ -352,6 +368,7 @@ Google Sheet ──(GitHub Action, hourly)──► data/items.json ──(fetch
 | `filters.js` | `FilterState` (a tiny observable store) + pure `applyFilters()`. Framework-free but predictable: one state change ➜ one render |
 | `render.js` | All DOM construction. Caches cards by id, so re-sorting reorders nodes instead of rebuilding them |
 | `modal.js` | Detail overlay and lightbox, including focus management |
+| `zoom.js` | Zoom + pan gestures for the full-screen image. Knows nothing about the catalogue — it takes an image and a container and returns `zoomIn/zoomOut/reset` |
 | `utils.js` | Formatting, `debounce`, focus trap, lazy-loading observer |
 | `icons.js` | Inline SVG set — no icon font, no sprite request |
 | `app.js` | Wiring: cache DOM, load data, bind events, render |
@@ -384,7 +401,8 @@ Targets the current versions of Chrome, Edge, Firefox and Safari (ES2022 modules
 - Full keyboard support: `Tab` reaches every card's **View Details** button (and its carousel
   dots), `Enter`/`Space` opens the item, `Esc` closes the modal, drawer or lightbox, `←`/`→`
   move through photos, and `/` jumps back to the search box. `Esc` closes the offer form
-  before the modal, so nothing is dismissed unexpectedly.
+  before the modal, so nothing is dismissed unexpectedly. In the full-screen viewer,
+  `+`/`-` zoom and `0` resets.
 - Focus is trapped inside overlays and restored to the element that opened them.
 - ARIA labels on every icon-only control; `role="status"` announces the result count.
 - Alt text is generated from each item's title and photo position.

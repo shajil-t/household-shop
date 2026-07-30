@@ -163,6 +163,9 @@ export function debounce(fn, delay = 300) {
   return debounced;
 }
 
+/** Clamps `value` into the inclusive range [min, max]. */
+export const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
 /** Wraps `index` around `length` so -1 becomes the last item. */
 export const wrapIndex = (index, length) => (length ? ((index % length) + length) % length : 0);
 

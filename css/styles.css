@@ -1524,11 +1524,101 @@ a {
 .lightbox__image {
   position: relative;
   max-width: min(96vw, 1400px);
-  max-height: 88vh;
+  max-height: 82vh;
   width: auto;
   height: auto;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-xl);
+  cursor: zoom-in;
+  /* The transform is written by js/zoom.js. Pointer gestures must reach it
+     instead of scrolling or selecting the page. */
+  transform-origin: center center;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  will-change: transform;
+  transition: transform var(--dur) var(--ease);
+}
+
+.lightbox__image.is-zoomed {
+  cursor: grab;
+  border-radius: 0;
+}
+
+/* Dragging must track the pointer exactly, so the easing has to go. */
+.lightbox__image.is-panning {
+  cursor: grabbing;
+  transition: none;
+}
+
+/* --- Zoom toolbar ------------------------------------------------------- */
+
+.lightbox__tools {
+  position: absolute;
+  bottom: var(--sp-5);
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-1);
+  border-radius: var(--radius-pill);
+  background: rgb(24 28 34 / 82%);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(-50%);
+}
+
+.lightbox__tools .icon-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-color: transparent;
+  background: transparent;
+  color: #fff;
+  box-shadow: none;
+}
+
+.lightbox__tools .icon-btn:hover {
+  background: rgb(255 255 255 / 16%);
+  color: #fff;
+}
+
+/* Limits are advertised with aria-disabled so focus is never taken away. */
+.lightbox__tools .icon-btn[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.lightbox__tools .icon-btn[aria-disabled="true"]:hover {
+  background: transparent;
+}
+
+.lightbox__zoom-level {
+  min-width: 3.5rem;
+  color: #fff;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.lightbox__hint {
+  position: absolute;
+  bottom: calc(var(--sp-5) + 3.25rem);
+  left: 50%;
+  color: rgb(255 255 255 / 55%);
+  font-size: var(--text-xs);
+  text-align: center;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.lightbox__hint kbd {
+  padding: 0.05rem 0.3rem;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.95em;
 }
 
 .lightbox__close {
@@ -1555,10 +1645,12 @@ a {
 
 .lightbox__counter {
   position: absolute;
-  bottom: var(--sp-5);
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgb(255 255 255 / 80%);
+  top: var(--sp-5);
+  left: var(--sp-5);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: rgb(24 28 34 / 82%);
+  color: rgb(255 255 255 / 88%);
   font-size: var(--text-sm);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
@@ -1750,6 +1842,20 @@ a {
 
   .lightbox__nav--next {
     right: var(--sp-2);
+  }
+
+  .lightbox__tools {
+    bottom: var(--sp-3);
+  }
+
+  .lightbox__hint {
+    bottom: calc(var(--sp-3) + 3.25rem);
+    padding-inline: var(--sp-4);
+  }
+
+  .lightbox__counter {
+    top: var(--sp-3);
+    left: var(--sp-3);
   }
 }
 
