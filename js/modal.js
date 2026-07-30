@@ -452,8 +452,8 @@ function renderActions(item) {
   showBidError('');
   dom.bidHint.textContent =
     typeof item.price === 'number' && item.price > 0
-      ? `Asking price ${formatPrice(item.price)}. Your offer is sent to the seller on WhatsApp — nothing is charged here.`
-      : 'Your offer is sent to the seller on WhatsApp — nothing is charged here.';
+      ? `Asking price ${formatPrice(item.price)}. Your offer is sent to the seller on WhatsApp.`
+      : 'Your offer is sent to the seller on WhatsApp.';
 }
 
 /* --- Offer ---------------------------------------------------------------- */
