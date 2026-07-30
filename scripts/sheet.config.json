@@ -1,0 +1,8 @@
+{
+  "_comment": "Build-time configuration for scripts/sheet-to-json.js. Either set sheetId + gid (recommended), or paste a full csvUrl. Environment variables SHEET_ID / SHEET_GID / SHEET_CSV_URL override these values, which is how the GitHub Action supplies them.",
+  "sheetId": "REPLACE_WITH_YOUR_GOOGLE_SHEET_ID",
+  "gid": "0",
+  "csvUrl": "",
+  "outputFile": "data/items.json",
+  "imagesDir": "images"
+}

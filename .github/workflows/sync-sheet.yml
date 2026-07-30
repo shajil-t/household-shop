@@ -1,0 +1,66 @@
+name: Sync Google Sheet
+
+# Keeps data/items.json in step with the Google Sheet that acts as the CMS.
+on:
+  # "Run workflow" button in the Actions tab.
+  workflow_dispatch:
+  # Every hour, on the hour.
+  schedule:
+    - cron: '0 * * * *'
+
+# Allow the job to push the regenerated data file back to the repository.
+permissions:
+  contents: write
+
+# A queued run is pointless if a newer one is already syncing the same sheet.
+concurrency:
+  group: sync-sheet
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Regenerate data/items.json
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Sync sheet to JSON
+        env:
+          # Optional repository variables/secrets. When unset, the script falls
+          # back to scripts/sheet.config.json.
+          # Settings -> Secrets and variables -> Actions -> Variables
+          SHEET_ID: ${{ vars.SHEET_ID }}
+          SHEET_GID: ${{ vars.SHEET_GID }}
+          SHEET_CSV_URL: ${{ secrets.SHEET_CSV_URL }}
+        run: npm run sync
+
+      - name: Commit and push if the catalogue changed
+        run: |
+          set -euo pipefail
+
+          if git diff --quiet -- data/items.json; then
+            echo "No catalogue changes — nothing to commit."
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/items.json
+          git commit -m "chore(data): sync catalogue from Google Sheet [skip ci]"
+
+          # Rebase onto anything pushed while this job was running, then push.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+          echo "Catalogue updated and pushed."

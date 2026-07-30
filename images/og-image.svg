@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Household Clearance Sale — items for sale">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#0b4f4a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g opacity="0.12" fill="none" stroke="#ffffff" stroke-width="8" stroke-linejoin="round">
+    <rect x="740" y="250" width="200" height="170" rx="16"/>
+    <rect x="960" y="300" width="170" height="120" rx="16"/>
+    <path d="M740 250l30-46h140l30 46M960 300l24-38h122l24 38"/>
+  </g>
+
+  <g fill="#ffffff" font-family="Inter, Segoe UI, system-ui, sans-serif">
+    <rect x="80" y="132" width="196" height="44" rx="22" fill="#ffffff" opacity="0.16"/>
+    <text x="102" y="162" font-size="20" font-weight="700" letter-spacing="2">CATALOGUE</text>
+
+    <text x="80" y="272" font-size="76" font-weight="800">Household</text>
+    <text x="80" y="352" font-size="76" font-weight="800">Clearance Sale</text>
+
+    <text x="80" y="422" font-size="30" opacity="0.85">Appliances · Furniture · Homeware</text>
+    <text x="80" y="500" font-size="26" opacity="0.7">Browse photos, prices and condition —</text>
+    <text x="80" y="538" font-size="26" opacity="0.7">then message the seller on WhatsApp.</text>
+  </g>
+</svg>

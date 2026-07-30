@@ -1,0 +1,11 @@
+id,title,price,description,status,category,condition,location,images,date_added,featured
+fridge-001,Hisense Fridge 250L,6000,"Excellent condition double-door fridge/freezer, only three years old and still under a transferable warranty. Runs quietly, seals are perfect and the interior has been deep cleaned. Ideal for a family of four.",available,Kitchen,Excellent,Midrand,"1.svg,2.svg,inside.svg",2026-07-28,yes
+couch-002,3-Seater Fabric Couch,3500,"Charcoal fabric couch with removable, washable covers. Two small marks on the left armrest (shown in the second photo), otherwise structurally solid with no sagging.",available,Lounge,Good,Midrand,"1.svg,2.svg",2026-07-27,
+bed-003,Queen Bed Base & Mattress,4200,"Sealy queen base and mattress set, always used with a protector so the mattress is spotless. Includes the original headboard brackets.",reserved,Bedroom,Very good,Midrand,"1.svg,2.svg",2026-07-26,
+desk-004,Solid Pine Study Desk,1200,"Sturdy pine desk with two drawers and a cable cut-out at the back. Some pen marks on the surface that sand out easily.",available,Office,Good,Midrand,"1.svg,2.svg",2026-07-25,
+microwave-005,Defy 30L Microwave,850,Large-capacity microwave with grill function. Turntable and manual included.,sold,Kitchen,Excellent,Midrand,1.svg,2026-07-24,
+washer-006,Samsung 8kg Washing Machine,4500,"Front loader with EcoBubble, recently serviced with a new door seal. Inlet and drain hoses included.",available,Laundry,Very good,Kyalami,"1.svg,2.svg",2026-07-23,yes
+tv-007,"55"" Samsung Smart TV",5200,4K smart TV with two remotes and the original wall bracket. Screen is unmarked; no dead pixels.,reserved,Lounge,Excellent,Midrand,"1.svg,2.svg",2026-07-22,
+mower-008,Ryobi Electric Lawnmower,900,"1600W electric mower with a 40L grass box and adjustable cutting height. Blade sharpened at the end of last season.",available,Garden,Good,Kyalami,1.svg,2026-07-21,
+bookshelf-009,Oak Bookshelf (5 Shelves),1500,"Solid oak veneer bookshelf, 1.8 m tall. Comes with the anti-tip wall strap.",available,Lounge,Very good,Midrand,"1.svg,2.svg",2026-07-20,
+diningset-010,Dining Table & 4 Chairs,2800,"Six-seater table with four matching upholstered chairs. Two extra chairs are available separately — ask when you message.",available,Dining,Good,Midrand,"1.svg,2.svg",2026-07-19,

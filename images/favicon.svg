@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Household Clearance Sale">
+  <rect width="64" height="64" rx="14" fill="#0f766e"/>
+  <path d="M14 29 32 15l18 14v20a2 2 0 0 1-2 2h-9V36H25v15h-9a2 2 0 0 1-2-2V29Z"
+        fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

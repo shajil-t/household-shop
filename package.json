@@ -1,0 +1,22 @@
+{
+  "name": "household-shop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static catalogue of household items for sale. Content managed in Google Sheets, hosted on GitHub Pages.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "sync": "node scripts/sheet-to-json.js",
+    "serve": "node scripts/serve.js",
+    "start": "npm run serve"
+  },
+  "keywords": [
+    "static-site",
+    "github-pages",
+    "google-sheets",
+    "catalogue"
+  ],
+  "license": "MIT"
+}
