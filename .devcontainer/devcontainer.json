@@ -1,0 +1,60 @@
+// Dev container for the household catalogue site.
+// See docs/DEVCONTAINER.md for the walkthrough, including how to sign in with a
+// GitHub account that is different from the one on your host machine.
+{
+  "name": "household-shop",
+
+  // Node major matches .nvmrc and the CI workflows.
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+
+  "features": {
+    // `gh` keeps its token in ~/.config/gh, which is a container-only volume
+    // below — that is what makes the second account isolated.
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  // Credentials live in named volumes so `gh auth login` survives a rebuild.
+  "mounts": [
+    "source=household-shop-gh,target=/home/node/.config/gh,type=volume",
+    "source=household-shop-ssh,target=/home/node/.ssh,type=volume"
+  ],
+
+  "containerEnv": {
+    // Point git at the container's own SSH key only, ignoring any keys the host
+    // ssh-agent forwards in. Without IdentitiesOnly, GitHub would happily
+    // authenticate you as the host account.
+    "GIT_SSH_COMMAND": "ssh -i /home/node/.ssh/id_ed25519 -o IdentitiesOnly=yes"
+  },
+
+  "forwardPorts": [4173],
+  "portsAttributes": {
+    "4173": {
+      "label": "Catalogue site",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "github.vscode-github-actions",
+        "redhat.vscode-yaml",
+        "ms-vscode.live-server"
+      ],
+      "settings": {
+        "files.eol": "\n",
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
+        // Commit signing usually relies on host keys that are deliberately not
+        // available in here.
+        "git.enableCommitSigning": false
+      }
+    }
+  },
+
+  // The image's `node` user owns the workspace; never run as root.
+  "remoteUser": "node"
+}

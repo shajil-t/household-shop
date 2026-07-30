@@ -1,0 +1,22 @@
+{
+  // --------------------------------------------------------------------------
+  // Dev container credential isolation.
+  //
+  // By default the Dev Containers extension copies your host ~/.gitconfig into
+  // the container and injects a credential helper that proxies back to the
+  // host. That is convenient normally, and exactly wrong here: this container
+  // exists to push as a *different* GitHub account.
+  //
+  // VS Code may report these as machine-scoped ("This setting can only be
+  // applied in user settings"). If it does, copy the same two lines into your
+  // User settings (Cmd+Shift+P → Preferences: Open User Settings (JSON)).
+  // `.devcontainer/post-create.sh` also strips anything that gets through, so
+  // the container is safe either way.
+  // --------------------------------------------------------------------------
+  "dev.containers.copyGitConfig": false,
+  "dev.containers.gitCredentialHelperConfigLocation": "none",
+
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true
+}

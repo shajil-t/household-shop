@@ -55,8 +55,13 @@ Built with vanilla HTML, CSS and ES2022 modules. No framework, no jQuery, no CSS
 │   ├── placeholder.svg         Fallback when a photo is missing
 │   ├── favicon.svg
 │   └── og-image.svg            Social sharing preview
+├── .devcontainer/
+│   ├── devcontainer.json       VS Code dev container (Node 22 + isolated GitHub login)
+│   ├── post-create.sh          First-run setup; strips host git credentials
+│   └── use-github-account.sh   Sign in as a second account, then verify it
 ├── docs/
-│   └── DEPLOYMENT.md           Full GitHub Pages guide (hosting, domains, rollback)
+│   ├── DEPLOYMENT.md           Full GitHub Pages guide (hosting, domains, rollback)
+│   └── DEVCONTAINER.md         Working in the container with a second account
 ├── scripts/
 │   ├── sheet-to-json.js        Sheet ➜ JSON sync (npm run sync)
 │   ├── sheet.config.json       ⚙️ Which sheet to sync
@@ -86,6 +91,18 @@ npm run serve        # http://localhost:4173
 `node-version-file`, so CI and your machine never drift apart. Without nvm, any Node 18+
 works — that is the real floor declared in `package.json` `engines`.
 
+### Or develop in a container
+
+**Cmd/Ctrl+Shift+P → Dev Containers: Reopen in Container.** You get Node 22, the GitHub CLI
+and — deliberately — *no* access to your host's GitHub credentials, so you can push and
+deploy this project as a completely separate account:
+
+```bash
+npm run account        # sign in as that account, set the commit identity, verify it
+```
+
+See **[docs/DEVCONTAINER.md](docs/DEVCONTAINER.md)**.
+
 > Open the site through `npm run serve`, not by double-clicking `index.html`.
 > ES modules and `fetch()` are blocked on the `file://` protocol.
 
@@ -100,6 +117,7 @@ The four commands:
 | `npm run sync` | Pull the Google Sheet into `data/items.json` |
 | `npm run deploy` | GitHub Pages preflight check — reads only, prints what to do next |
 | `npm run deploy -- --push` | Commit and push the site to `origin` |
+| `npm run account` | *(dev container only)* sign in as a second GitHub account and verify it |
 
 ---
 
@@ -258,7 +276,8 @@ Details worth knowing:
 
 📖 **Full guide: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** — repository setup, the two Pages
 sources, custom domains, verification checklist, rollback and a Pages-specific troubleshooting
-table.
+table. Publishing under a *different* GitHub account than the one on your machine?
+See [docs/DEVCONTAINER.md](docs/DEVCONTAINER.md).
 
 The short version:
 

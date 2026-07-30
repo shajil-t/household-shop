@@ -13,8 +13,13 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/
 *.swp
+
+# Keep the shared VS Code settings (dev container credential isolation), but
+# nothing else from the folder.
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 
 # Build / temp output
 tmp/
