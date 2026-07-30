@@ -54,12 +54,17 @@ Built with vanilla HTML, CSS and ES2022 modules. No framework, no jQuery, no CSS
 │   ├── placeholder.svg         Fallback when a photo is missing
 │   ├── favicon.svg
 │   └── og-image.svg            Social sharing preview
+├── docs/
+│   └── DEPLOYMENT.md           Full GitHub Pages guide (hosting, domains, rollback)
 ├── scripts/
 │   ├── sheet-to-json.js        Sheet ➜ JSON sync (npm run sync)
 │   ├── sheet.config.json       ⚙️ Which sheet to sync
-│   └── serve.js                Local dev server (npm run serve)
+│   ├── serve.js                Local dev server (npm run serve)
+│   └── deploy.js               Publish preflight + push helper (npm run deploy)
 ├── .github/workflows/
-│   └── sync-sheet.yml          Hourly + manual sync, commits the result
+│   ├── sync-sheet.yml          Hourly + manual sheet sync, commits the result
+│   └── deploy-pages.yml        Optional: Pages deploy when Source = GitHub Actions
+├── .nvmrc                      Node version used locally and in CI (22)
 ├── .nojekyll                   Tells GitHub Pages to serve the files as-is
 └── package.json
 ```
@@ -71,9 +76,14 @@ Only two files normally need editing: **`js/config.js`** and **`scripts/sheet.co
 ## Quick start
 
 ```bash
+nvm use              # optional: switches to the Node version in .nvmrc (22)
 npm install          # no runtime dependencies — this just sets up package metadata
 npm run serve        # http://localhost:4173
 ```
+
+`.nvmrc` pins the Node major version, and `sync-sheet.yml` reads that same file via
+`node-version-file`, so CI and your machine never drift apart. Without nvm, any Node 18+
+works — that is the real floor declared in `package.json` `engines`.
 
 > Open the site through `npm run serve`, not by double-clicking `index.html`.
 > ES modules and `fetch()` are blocked on the `file://` protocol.
@@ -81,11 +91,14 @@ npm run serve        # http://localhost:4173
 The repo ships with ten sample items and generated demo photos so you can see the finished
 UI immediately. Replace them with your own (see below).
 
-Sync the catalogue from your sheet at any time:
+The four commands:
 
-```bash
-npm run sync
-```
+| Command | What it does |
+| --- | --- |
+| `npm run serve` | Static dev server on <http://localhost:4173> |
+| `npm run sync` | Pull the Google Sheet into `data/items.json` |
+| `npm run deploy` | GitHub Pages preflight check — reads only, prints what to do next |
+| `npm run deploy -- --push` | Commit and push the site to `origin` |
 
 ---
 
@@ -227,34 +240,39 @@ Details worth knowing:
 
 ## Deploying to GitHub Pages
 
-1. Create a repository on GitHub and push this project to it:
+📖 **Full guide: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** — repository setup, the two Pages
+sources, custom domains, verification checklist, rollback and a Pages-specific troubleshooting
+table.
 
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: household catalogue site"
-   git branch -M main
-   git remote add origin https://github.com/<you>/<repo>.git
-   git push -u origin main
-   ```
+The short version:
 
-2. In the repository: **Settings ▸ Pages**
-   - **Source:** *Deploy from a branch*
-   - **Branch:** `main` — **Folder:** `/ (root)`
-   - Save.
+```bash
+npm run deploy                 # preflight: config, content, hosting gotchas (changes nothing)
+npm run deploy -- --push       # commit + push to an existing origin
+```
 
-3. Wait a minute, then open `https://<you>.github.io/<repo>/`.
+Then, once, in the repository: **Settings ▸ Pages** → Source **Deploy from a branch** →
+Branch **your default branch** (`main` or `master`) → Folder **`/ (root)`** → **Save**.
 
-That is the whole deployment. Every push to `main` republishes the site, including the
-hourly commits made by the sync Action.
+Your site is at `https://<you>.github.io/<repo>/` a minute or two later. Every push
+republishes it, including the hourly commits made by the sync workflow.
 
-Optional polish
+Starting from nothing and have the [GitHub CLI](https://cli.github.com/)? One command creates
+the repository, pushes and enables Pages:
 
-- **Custom domain:** Settings ▸ Pages ▸ Custom domain (this creates a `CNAME` file).
-- **Social preview:** replace `images/og-image.svg` (a `.png` at 1200 × 630 previews best on
-  some platforms) and update the `og:image` tags in `index.html`.
-- The Action needs write access: **Settings ▸ Actions ▸ General ▸ Workflow permissions ▸
-  Read and write permissions.**
+```bash
+npm run deploy -- --create household-shop
+```
+
+Two more settings worth doing on the first deploy:
+
+- **Settings ▸ Actions ▸ General ▸ Workflow permissions → Read and write** — otherwise the
+  hourly sync cannot commit `data/items.json`.
+- **Settings ▸ Secrets and variables ▸ Actions ▸ Variables** → `SHEET_ID`, `SHEET_GID`
+  (optional; keeps the sheet id out of the committed config).
+
+`.github/workflows/deploy-pages.yml` is only needed if you set the Pages source to
+*GitHub Actions* instead of a branch — see the guide for which to pick. Delete it otherwise.
 
 ---
 
@@ -271,8 +289,10 @@ Details worth knowing:
 
 - If the catalogue has not changed, the script leaves the file alone and the job commits
   nothing — no empty commits, no needless Pages rebuilds.
-- The commit message carries `[skip ci]` and the workflow does not run on `push`, so it can
-  never trigger itself.
+- The workflow has no `push` trigger, so it can never trigger itself. The commit deliberately
+  omits `[skip ci]` so that `deploy-pages.yml` can still pick it up when Pages is set to
+  *GitHub Actions* (a `GITHUB_TOKEN` push raises no `push` event, so that workflow listens for
+  this one finishing instead).
 - It rebases before pushing, so a sync that overlaps with your own push will not fail.
 - Configure the sheet in CI with **Settings ▸ Secrets and variables ▸ Actions**:
   - Variables: `SHEET_ID`, `SHEET_GID`
@@ -384,6 +404,7 @@ Targets the current versions of Chrome, Edge, Firefox and Safari (ES2022 modules
 | Items show the "No photo yet" placeholder | The folder or filename does not match the `images` cell. Names are case-sensitive on GitHub Pages. Run `npm run sync` to list missing files |
 | Nothing renders, console shows a module error | The site was opened via `file://`. Use `npm run serve` |
 | The Action fails with `permission denied` on push | Settings ▸ Actions ▸ General ▸ Workflow permissions ▸ *Read and write* |
+| A Pages-specific problem (404, unstyled page, stale site) | See the table in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md#troubleshooting) |
 | The hourly sync stopped running | GitHub pauses schedules in dormant repos; press *Run workflow* once |
 | The share button says "Copy failed" | The browser blocked clipboard access — this happens on `http://` origins other than `localhost`. GitHub Pages is HTTPS, so it works there |
 | Contact / offer buttons are missing | `whatsappNumber` is empty in `js/config.js`, `allowOffers` is `false`, or the item's status is `sold` |

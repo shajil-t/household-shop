@@ -10,7 +10,8 @@
   "scripts": {
     "sync": "node scripts/sheet-to-json.js",
     "serve": "node scripts/serve.js",
-    "start": "npm run serve"
+    "start": "node scripts/serve.js",
+    "deploy": "node scripts/deploy.js"
   },
   "keywords": [
     "static-site",

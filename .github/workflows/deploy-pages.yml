@@ -1,0 +1,71 @@
+name: Deploy to GitHub Pages
+
+# Optional: only needed when Pages is set to Settings ▸ Pages ▸ Source =
+# "GitHub Actions". If you use "Deploy from a branch" instead, GitHub publishes
+# the repository for you and this workflow can be deleted.
+#
+# See docs/DEPLOYMENT.md for which option to pick.
+on:
+  push:
+    # Whichever of these is your default branch; harmless to list both.
+    branches: [main, master]
+    # Nothing here affects the published site.
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/workflows/sync-sheet.yml'
+
+  # Manual "Run workflow" button.
+  workflow_dispatch:
+
+  # The catalogue sync pushes with GITHUB_TOKEN, and pushes made with that token
+  # deliberately do not raise `push` events — otherwise workflows could trigger
+  # themselves forever. `workflow_run` is how we still redeploy after a sync.
+  workflow_run:
+    workflows: ['Sync Google Sheet']
+    types: [completed]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deployments race; the newest content is the one that matters.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Publish site
+    runs-on: ubuntu-latest
+
+    # For workflow_run, only deploy when the sync actually succeeded.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # workflow_run starts from the default branch; be explicit so a sync
+          # commit is always included.
+          ref: ${{ github.event.repository.default_branch || github.ref }}
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # The site is static: the repository root *is* the build output.
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
