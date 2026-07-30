@@ -1,12 +1,14 @@
 name: Sync Google Sheet
 
 # Keeps data/items.json in step with the Google Sheet that acts as the CMS.
+#
+# Manual only: run it from the Actions tab whenever the sheet changes. To go
+# back to an automatic sync, add a `schedule:` trigger here, e.g.
+#   schedule:
+#     - cron: '0 * * * *'   # every hour, on the hour
 on:
   # "Run workflow" button in the Actions tab.
   workflow_dispatch:
-  # Every hour, on the hour.
-  schedule:
-    - cron: '0 * * * *'
 
 # Allow the job to push the regenerated data file back to the repository.
 permissions:
