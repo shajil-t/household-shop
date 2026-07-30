@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 *)",
+      "Bash(node --check js/app.js)",
+      "Bash(node --check js/modal.js)",
+      "Bash(node --check js/zoom.js)",
+      "Bash(node --check js/utils.js)",
+      "Bash(cat)",
+      "Bash(node /tmp/zoom-test.mjs)",
+      "Bash(chmod +x .devcontainer/*.sh)",
+      "Bash(bash -n .devcontainer/use-github-account.sh)",
+      "Bash(bash -n .devcontainer/post-create.sh)"
+    ]
+  }
+}
