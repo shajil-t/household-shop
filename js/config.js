@@ -20,7 +20,7 @@ export const CONFIG = Object.freeze({
    * South Africa: drop the leading 0 and prefix 27 (e.g. 082 123 4567 -> 27821234567).
    * Set to an empty string to hide the "Contact Seller" button entirely.
    */
-  whatsappNumber: '27820000000',
+  whatsappNumber: '27761872918',
 
   /**
    * Show the "Make an Offer" button in the item modal. Offers are sent as a
