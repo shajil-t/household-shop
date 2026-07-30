@@ -59,6 +59,10 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          # Creates the Pages site (source = GitHub Actions) on the first run,
+          # so the workflow does not depend on someone visiting Settings ▸ Pages.
+          enablement: true
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
