@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T17:28:01.630Z",
+  "generatedAt": "2026-08-01T17:32:41.365Z",
   "count": 10,
   "items": [
     {
@@ -11,7 +11,12 @@
       "category": "Kitchen",
       "condition": "Excellent",
       "location": "Midrand",
-      "images": [],
+      "images": [
+        "images/2-pots/1.jpeg",
+        "images/2-pots/2.jpeg",
+        "images/2-pots/3.jpeg",
+        "images/2-pots/4.jpeg"
+      ],
       "dateAdded": null,
       "featured": false,
       "order": 2
@@ -25,7 +30,10 @@
       "category": "Dining",
       "condition": "Excellent",
       "location": "Midrand",
-      "images": [],
+      "images": [
+        "images/25-water-can/1.jpeg",
+        "images/25-water-can/2.jpeg"
+      ],
       "dateAdded": null,
       "featured": false,
       "order": 3
@@ -39,7 +47,12 @@
       "category": "Car",
       "condition": "Fair",
       "location": "Midrand",
-      "images": [],
+      "images": [
+        "images/baby-car-seat/1.jpeg",
+        "images/baby-car-seat/2.jpeg",
+        "images/baby-car-seat/3.jpeg",
+        "images/baby-car-seat/4.jpeg"
+      ],
       "dateAdded": null,
       "featured": false,
       "order": 4
@@ -53,7 +66,12 @@
       "category": "Dining",
       "condition": "Fair",
       "location": "Midrand",
-      "images": [],
+      "images": [
+        "images/dining-table/1.jpeg",
+        "images/dining-table/2.jpeg",
+        "images/dining-table/3.jpeg",
+        "images/dining-table/4.jpeg"
+      ],
       "dateAdded": null,
       "featured": false,
       "order": 5
@@ -67,7 +85,10 @@
       "category": "Kitchen",
       "condition": "Good",
       "location": "Midrand",
-      "images": [],
+      "images": [
+        "images/gas-cylinder/1.jpeg",
+        "images/gas-cylinder/2.jpeg"
+      ],
       "dateAdded": null,
       "featured": false,
       "order": 6
@@ -81,7 +102,10 @@
       "category": "Accessories",
       "condition": "Excellent",
       "location": "Midrand",
-      "images": [],
+      "images": [
+        "images/hand-pump/1.jpeg",
+        "images/hand-pump/2.jpeg"
+      ],
       "dateAdded": null,
       "featured": false,
       "order": 7
@@ -95,7 +119,13 @@
       "category": "Storage",
       "condition": "Fair",
       "location": "Midrand",
-      "images": [],
+      "images": [
+        "images/storage-container-large/1.jpeg",
+        "images/storage-container-large/2.jpeg",
+        "images/storage-container-large/3.jpeg",
+        "images/storage-container-large/4.jpeg",
+        "images/storage-container-large/5.jpeg"
+      ],
       "dateAdded": null,
       "featured": false,
       "order": 8
@@ -109,7 +139,10 @@
       "category": "Kids",
       "condition": "Good",
       "location": "Midrand",
-      "images": [],
+      "images": [
+        "images/kiddies-chair/1.jpeg",
+        "images/kiddies-chair/2.jpeg"
+      ],
       "dateAdded": null,
       "featured": false,
       "order": 9
@@ -123,7 +156,18 @@
       "category": "Accessories",
       "condition": "Good",
       "location": "Midrand",
-      "images": [],
+      "images": [
+        "images/treadmill/1.jpeg",
+        "images/treadmill/2.jpeg",
+        "images/treadmill/3.jpeg",
+        "images/treadmill/4.jpeg",
+        "images/treadmill/5.jpeg",
+        "images/treadmill/6.jpeg",
+        "images/treadmill/7.jpeg",
+        "images/treadmill/8.jpeg",
+        "images/treadmill/9.jpeg",
+        "images/treadmill/10.jpeg"
+      ],
       "dateAdded": null,
       "featured": false,
       "order": 10
@@ -137,7 +181,11 @@
       "category": "Other",
       "condition": "",
       "location": "",
-      "images": [],
+      "images": [
+        "images/wooden-crates/1.jpeg",
+        "images/wooden-crates/2.jpeg",
+        "images/wooden-crates/3.jpeg"
+      ],
       "dateAdded": null,
       "featured": false,
       "order": 11

@@ -18,9 +18,12 @@
  * Expected columns (header row, case/spacing insensitive):
  *   id | title | price | description | status | category | condition |
  *   location | images        (optional: date_added, featured)
+ *
+ * Photos can be listed either as `images` ("1.jpg, 2.jpg") or as an
+ * `imageFolder` + `imageCount` pair pointing at images/<folder>/<n>.<ext>.
  */
 
-import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, access, readdir } from 'node:fs/promises';
 import { constants as FS } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -47,6 +50,9 @@ const HEADER_ALIASES = {
   images: 'images',
   image: 'images',
   photos: 'images',
+  imagefolder: 'imageFolder',
+  folder: 'imageFolder',
+  imagecount: 'imageCount',
   dateadded: 'dateAdded',
   date: 'dateAdded',
   added: 'dateAdded',
@@ -301,23 +307,92 @@ function parsePrice(raw) {
   return Number.isFinite(value) ? Math.round(value * 100) / 100 : null;
 }
 
+/** Default extension used when a folder's files are not on disk yet. */
+const DEFAULT_IMAGE_EXT = 'jpeg';
+
+/** Sorts "1.jpeg, 2.jpeg, 10.jpeg" numerically rather than lexicographically. */
+function byLeadingNumber(a, b) {
+  const na = Number.parseInt(a, 10);
+  const nb = Number.parseInt(b, 10);
+  if (Number.isNaN(na) || Number.isNaN(nb)) return a.localeCompare(b);
+  return na - nb;
+}
+
 /**
- * Converts the `images` cell ("1.jpg, 2.jpg") into web paths rooted at the
- * item's own folder ("images/fridge-001/1.jpg").
- * @param {string} raw
+ * Lists the image files that are actually committed, keyed by folder name, so
+ * that folder-based rows can pick up the real filenames/extensions.
+ * @param {string} imagesDir
+ * @returns {Promise<Map<string, string[]>>}
+ */
+async function scanImageFolders(imagesDir) {
+  const root = path.resolve(ROOT, imagesDir);
+  const folders = new Map();
+
+  let entries;
+  try {
+    entries = await readdir(root, { withFileTypes: true });
+  } catch {
+    return folders;
+  }
+
+  await Promise.all(
+    entries
+      .filter((entry) => entry.isDirectory())
+      .map(async (entry) => {
+        const files = (await readdir(path.join(root, entry.name)))
+          .filter((file) => !file.startsWith('.'))
+          .sort(byLeadingNumber);
+        folders.set(entry.name, files);
+      })
+  );
+
+  return folders;
+}
+
+/**
+ * Resolves an item's image paths. Two sheet layouts are supported:
+ *   1. `images`      — an explicit list ("1.jpg, 2.jpg" or a full path)
+ *   2. `imageFolder` + `imageCount` — a folder of numbered photos
+ * Folder rows prefer the filenames found on disk (so extensions are correct)
+ * and fall back to synthesised "<n>.jpeg" names when nothing is committed yet.
+ * @param {Record<string, string>} record
  * @param {string} id
  * @param {string} imagesDir
+ * @param {Map<string, string[]>} folders
  * @returns {string[]}
  */
-function buildImagePaths(raw, id, imagesDir) {
-  if (!raw) return [];
+function buildImagePaths(record, id, imagesDir, folders) {
+  const raw = record.images;
 
-  return raw
-    .split(',')
-    .map((name) => name.trim().replace(/^\/+/, ''))
-    .filter(Boolean)
-    // Allow a full path in the sheet as an escape hatch for shared images.
-    .map((name) => (name.includes('/') ? name : `${imagesDir}/${id}/${name}`));
+  if (raw) {
+    return raw
+      .split(',')
+      .map((name) => name.trim().replace(/^\/+/, ''))
+      .filter(Boolean)
+      // Allow a full path in the sheet as an escape hatch for shared images.
+      .map((name) => (name.includes('/') ? name : `${imagesDir}/${id}/${name}`));
+  }
+
+  const folder = (record.imageFolder || '').trim().replace(/^\/+|\/+$/g, '') || (folders.has(id) ? id : '');
+  if (!folder) return [];
+
+  const count = Number.parseInt(record.imageCount || '', 10);
+  const onDisk = folders.get(folder);
+
+  if (onDisk?.length) {
+    const files = Number.isFinite(count) && count > 0 ? onDisk.slice(0, count) : onDisk;
+    if (Number.isFinite(count) && count > onDisk.length) {
+      log.warn(`Row "${id}": imageCount is ${count} but only ${onDisk.length} file(s) exist in ${imagesDir}/${folder}.`);
+    }
+    return files.map((file) => `${imagesDir}/${folder}/${file}`);
+  }
+
+  if (!Number.isFinite(count) || count <= 0) {
+    log.warn(`Row "${id}": folder "${folder}" is empty/missing and no usable imageCount was given.`);
+    return [];
+  }
+
+  return Array.from({ length: count }, (_, i) => `${imagesDir}/${folder}/${i + 1}.${DEFAULT_IMAGE_EXT}`);
 }
 
 /** Normalises the status cell, defaulting to "available". */
@@ -344,8 +419,9 @@ function normaliseId(raw) {
  * @param {Record<string, string>} record
  * @param {number} rowNumber 1-based sheet row (including the header)
  * @param {string} imagesDir
+ * @param {Map<string, string[]>} folders
  */
-function toItem(record, rowNumber, imagesDir) {
+function toItem(record, rowNumber, imagesDir, folders) {
   const id = normaliseId(record.id || '');
   const title = (record.title || '').trim();
 
@@ -367,7 +443,7 @@ function toItem(record, rowNumber, imagesDir) {
     category: (record.category || 'Other').trim() || 'Other',
     condition: (record.condition || '').trim(),
     location: (record.location || '').trim(),
-    images: buildImagePaths(record.images, id, imagesDir),
+    images: buildImagePaths(record, id, imagesDir, folders),
     dateAdded: (record.dateAdded || '').trim() || null,
     featured: /^(true|yes|y|1)$/i.test(record.featured || ''),
     /** Sheet order; the front end uses it as the "newest" tie-breaker. */
@@ -477,9 +553,10 @@ async function main() {
   log.ok(`Parsed ${records.length} data row(s).`);
 
   log.step('Normalising items');
+  const folders = await scanImageFolders(imagesDir);
   // rowNumber: +2 because index 0 is the first data row and row 1 is the header.
   const items = dedupeById(
-    records.map((record, index) => toItem(record, index + 2, imagesDir)).filter(Boolean)
+    records.map((record, index) => toItem(record, index + 2, imagesDir, folders)).filter(Boolean)
   );
 
   const byStatus = items.reduce((acc, item) => {
