@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-08-01T17:43:37.912Z",
-  "count": 10,
+  "generatedAt": "2026-08-09T15:57:48.356Z",
+  "count": 20,
   "items": [
     {
       "id": "1",
       "title": "Ceramic Serving Bowl Set with Lids",
-      "price": 179,
+      "price": 100,
       "description": "Beautiful set of two ceramic serving bowls in excellent condition. The set includes one large bowl and one slightly smaller bowl, both with matching lids. Perfect for serving hot or cold dishes at family meals, dinner parties, or special occasions. Stylish, practical, and a great addition to any dining table.",
       "status": "available",
       "category": "Kitchen",
@@ -24,7 +24,7 @@
     {
       "id": "2",
       "title": "25L Water dispenser with tap",
-      "price": 129,
+      "price": 120,
       "description": "1 x 25L Water dispenser with tap",
       "status": "available",
       "category": "Dining",
@@ -41,7 +41,7 @@
     {
       "id": "3",
       "title": "LittleOne Baby Car Seat",
-      "price": 349,
+      "price": 250,
       "description": "1 x Little One baby car seat",
       "status": "available",
       "category": "Car",
@@ -60,9 +60,9 @@
     {
       "id": "4",
       "title": "6 Seater Dining Table with Chairs",
-      "price": 699,
+      "price": 500,
       "description": "6-seater dining table with matching chairs. The set is in good condition. The tabletop has a few chips on the surface, and one chair has a slightly loose leg that may need minor repair. Aside from these minor imperfections, the table and chairs are solid.",
-      "status": "available",
+      "status": "sold",
       "category": "Dining",
       "condition": "Fair",
       "location": "Midrand",
@@ -79,8 +79,8 @@
     {
       "id": "5",
       "title": "2 x 9kg Gas Cylinders",
-      "price": 380,
-      "description": "2 x 9kg gas cylinders (R380ea)",
+      "price": 300,
+      "description": "2 x 9kg gas cylinders (R300ea)",
       "status": "available",
       "category": "Kitchen",
       "condition": "Good",
@@ -96,7 +96,7 @@
     {
       "id": "6",
       "title": "Hand Air Pump with Pressure Gauge",
-      "price": 99,
+      "price": 80,
       "description": "Hand air pump suitable for inflating bicycle tyres, soccer balls, basketballs, inflatable toys, and other sports equipment",
       "status": "available",
       "category": "Accessories",
@@ -113,8 +113,8 @@
     {
       "id": "7",
       "title": "2 x Large Plastic Storage Containers",
-      "price": 119,
-      "description": "Set of two large 30L plastic storage containers with wheels. One container has a lid with a small broken cornor, but it remains usable. Aside from this minor flaw, both containers are sturdy, durable, and in good overall condition. Great for home or garage storage (R119 for the good one and R100 for the broken lid one)",
+      "price": 100,
+      "description": "Set of two large 30L plastic storage containers with wheels. One container has a lid with a small broken cornor, but it remains usable. Aside from this minor flaw, both containers are sturdy, durable, and in good overall condition. Great for home or garage storage (R100 for the good one and R90 for the broken lid one)",
       "status": "available",
       "category": "Storage",
       "condition": "Fair",
@@ -133,7 +133,7 @@
     {
       "id": "8",
       "title": "Kiddies Plastic Chair",
-      "price": 50,
+      "price": 40,
       "description": "1 x Kiddies Plastic Chair (Red)",
       "status": "available",
       "category": "Kids",
@@ -150,7 +150,7 @@
     {
       "id": "9",
       "title": "Trojan Crosswalk 340 Treadmill",
-      "price": 2799,
+      "price": 2500,
       "description": "Trojan Crosswalk 340 Treadmill - well maintained, carefully looked after, and is in excellent condition.\n\nFeatures:\n\n- Excellent condition\n- Built-in heart rate monitoring sensors\n- Quick-select speed controls for easy workout adjustments\n- Multiple incline levels to increase workout intensity\n- Built-in Body Fat Index programmes to help track fitness progress\n- Crosswalk handlebars for an added upper-body workout\n- Foldable design for convenient, space-saving storage\n- Transport wheels for easy movement and storage",
       "status": "available",
       "category": "Accessories",
@@ -175,10 +175,10 @@
     {
       "id": "10",
       "title": "2 x Wooden Crates (Storage)",
-      "price": 59,
-      "description": "Set of two sturdy wooden storage crates, perfect for organising your home or garage. (R59ea)",
+      "price": 50,
+      "description": "Set of two sturdy wooden storage crates, perfect for organising your home or garage. (R50ea)",
       "status": "available",
-      "category": "Other",
+      "category": "Storage",
       "condition": "",
       "location": "",
       "images": [
@@ -189,6 +189,189 @@
       "dateAdded": null,
       "featured": false,
       "order": 11
+    },
+    {
+      "id": "11",
+      "title": "2 x 24inch Samsung Monitors",
+      "price": 600,
+      "description": "Samsung S24D300 LED computer monitors.\n-HDMI and VGA ports\n-R600 each",
+      "status": "available",
+      "category": "Accessories",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/samsung-monitor/1.jpeg",
+        "images/samsung-monitor/2.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 12
+    },
+    {
+      "id": "12",
+      "title": "Russel Hobs Pedestal Fan",
+      "price": 350,
+      "description": "Russel Hobs Pedestal Fan",
+      "status": "available",
+      "category": "Appliances",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/ped-fan/1.jpeg",
+        "images/ped-fan/2.jpeg",
+        "images/ped-fan/3.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 13
+    },
+    {
+      "id": "13",
+      "title": "Kitchen Trash Bin 5L",
+      "price": 50,
+      "description": "Kitchen Trash Bin with Lid 5L",
+      "status": "available",
+      "category": "Kitchen",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/trash-bin-small/1.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 14
+    },
+    {
+      "id": "14",
+      "title": "HP Computer/Sudy Table",
+      "price": 200,
+      "description": "Strong and sturdy computer/study table with a convenient pull-out keyboard panel. Comes with wheels for easy movement and a locking system to keep it securely in place. Great for home and study use.",
+      "status": "available",
+      "category": "Office",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/study-table/1.jpeg",
+        "images/study-table/2.jpeg",
+        "images/study-table/3.jpeg",
+        "images/study-table/4.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 15
+    },
+    {
+      "id": "15",
+      "title": "1 x Mecer 21 inch Monitor",
+      "price": 300,
+      "description": "Mecer 21.5 inch computer monitor\n- Model A2256",
+      "status": "available",
+      "category": "Accessories",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/mecer-monitor/1.jpeg",
+        "images/mecer-monitor/2.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 16
+    },
+    {
+      "id": "16",
+      "title": "Cornor Table with Chair",
+      "price": 900,
+      "description": "Strong and sturdy corner table with a matching chair. The table features 5 spacious drawers, providing plenty of storage for documents, stationery, and other essentials. Perfect for a home office or study area.",
+      "status": "available",
+      "category": "Office",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/cornor-table-and-chair/1.jpeg",
+        "images/cornor-table-and-chair/2.jpeg",
+        "images/cornor-table-and-chair/3.jpeg",
+        "images/cornor-table-and-chair/4.jpeg",
+        "images/cornor-table-and-chair/5.jpeg",
+        "images/cornor-table-and-chair/6.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 17
+    },
+    {
+      "id": "17",
+      "title": "2 x Small Trash Bins",
+      "price": 20,
+      "description": "Small trash bins - R20 each",
+      "status": "available",
+      "category": "Office",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/small-trash-bins/1.jpeg",
+        "images/small-trash-bins/2.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 18
+    },
+    {
+      "id": "18",
+      "title": "1 x Side Table",
+      "price": 150,
+      "description": "A turdy wooden side table, perfect for placing next to your bed. Features 2 convenient storage options — a handy drawer and an open storage space at the bottom. Ideal for keeping your essentials, books, and other items within easy reach.",
+      "status": "available",
+      "category": "Furniture",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/side-table/1.jpeg",
+        "images/side-table/2.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 19
+    },
+    {
+      "id": "19",
+      "title": "King Size Bed and Base",
+      "price": 3500,
+      "description": "183cm Therapaedic Essential 4 Mattress with Base. Pretty new and still under warranty",
+      "status": "available",
+      "category": "Furniture",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/bed-king/1.jpeg",
+        "images/bed-king/2.jpeg",
+        "images/bed-king/3.jpeg",
+        "images/bed-king/4.jpeg",
+        "images/bed-king/5.jpeg",
+        "images/bed-king/6.jpeg",
+        "images/bed-king/7.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 20
+    },
+    {
+      "id": "20",
+      "title": "Double Size Bed and Base",
+      "price": 900,
+      "description": "Double size orthopedic mattress with its base",
+      "status": "available",
+      "category": "Furniture",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/bed-double/1.jpeg",
+        "images/bed-double/2.jpeg",
+        "images/bed-double/3.jpeg",
+        "images/bed-double/4.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 21
     }
   ]
 }
