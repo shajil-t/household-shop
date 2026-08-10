@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-09T15:57:48.356Z",
-  "count": 20,
+  "generatedAt": "2026-08-10T17:15:07.097Z",
+  "count": 31,
   "items": [
     {
       "id": "1",
@@ -150,9 +150,9 @@
     {
       "id": "9",
       "title": "Trojan Crosswalk 340 Treadmill",
-      "price": 2500,
+      "price": 3500,
       "description": "Trojan Crosswalk 340 Treadmill - well maintained, carefully looked after, and is in excellent condition.\n\nFeatures:\n\n- Excellent condition\n- Built-in heart rate monitoring sensors\n- Quick-select speed controls for easy workout adjustments\n- Multiple incline levels to increase workout intensity\n- Built-in Body Fat Index programmes to help track fitness progress\n- Crosswalk handlebars for an added upper-body workout\n- Foldable design for convenient, space-saving storage\n- Transport wheels for easy movement and storage",
-      "status": "available",
+      "status": "sold",
       "category": "Accessories",
       "condition": "Excellent",
       "location": "Midrand",
@@ -209,8 +209,8 @@
     },
     {
       "id": "12",
-      "title": "Russel Hobs Pedestal Fan",
-      "price": 350,
+      "title": "Russel Hobbs Pedestal Fan",
+      "price": 400,
       "description": "Russel Hobs Pedestal Fan",
       "status": "available",
       "category": "Appliances",
@@ -372,6 +372,212 @@
       "dateAdded": null,
       "featured": false,
       "order": 21
+    },
+    {
+      "id": "21",
+      "title": "Hisense 49in Smart TV",
+      "price": 3500,
+      "description": "Hisense 49in Smart TV",
+      "status": "available",
+      "category": "Appliances",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/tv/1.jpeg",
+        "images/tv/2.jpeg",
+        "images/tv/3.jpeg",
+        "images/tv/4.jpeg",
+        "images/tv/5.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 22
+    },
+    {
+      "id": "22",
+      "title": "Russel Hobbs Microwave 30L",
+      "price": 850,
+      "description": "Russel Hobbs Microwave 30L",
+      "status": "available",
+      "category": "Appliances",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/microwave/1.jpeg",
+        "images/microwave/2.jpeg",
+        "images/microwave/3.jpeg",
+        "images/microwave/4.jpeg",
+        "images/microwave/5.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 23
+    },
+    {
+      "id": "23",
+      "title": "Hisense 305L Inox Refrigerator",
+      "price": 4600,
+      "description": "Hisense 305 liter bottom-freezer combi refrigerator featuring an Inox finish, an A+ energy efficiency rating, and a non-plumbed 3-liter water dispenser.",
+      "status": "available",
+      "category": "Appliances",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/fridge/1.jpeg",
+        "images/fridge/2.jpeg",
+        "images/fridge/3.jpeg",
+        "images/fridge/4.jpeg",
+        "images/fridge/5.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 24
+    },
+    {
+      "id": "24",
+      "title": "Kenwood 1.7L Stainless Steel Kettle",
+      "price": 150,
+      "description": "Kenwood 1.7L Stainless Steel Kettle",
+      "status": "available",
+      "category": "Appliances",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/kettle/1.jpeg",
+        "images/kettle/2.jpeg",
+        "images/kettle/3.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 25
+    },
+    {
+      "id": "25",
+      "title": "USHA Thunderbolt 800W Mixer Grider with 3 Jars",
+      "price": 450,
+      "description": "USHA Thunderbolt 800W Mixer Grider with 3 Jars",
+      "status": "available",
+      "category": "Appliances",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/mixie/1.jpeg",
+        "images/mixie/3.jpeg",
+        "images/mixie/4.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 26
+    },
+    {
+      "id": "26",
+      "title": "Wooden Coffee Table",
+      "price": 600,
+      "description": "Wooden Coffee Table",
+      "status": "available",
+      "category": "Furniture",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/coffee-table/1.jpeg",
+        "images/coffee-table/2.jpeg",
+        "images/coffee-table/3.jpeg",
+        "images/coffee-table/4.jpeg",
+        "images/coffee-table/5.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 27
+    },
+    {
+      "id": "27",
+      "title": "Samsuung 8kg Top Loader Washing Machine",
+      "price": 2000,
+      "description": "Samsuung 8kg Top Loader Washing Machine",
+      "status": "available",
+      "category": "Appliances",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/washing-machine/1.jpeg",
+        "images/washing-machine/2.jpeg",
+        "images/washing-machine/3.jpeg",
+        "images/washing-machine/4.jpeg",
+        "images/washing-machine/5.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 28
+    },
+    {
+      "id": "28",
+      "title": "4 x 2L Air tight Glass Jars",
+      "price": 40,
+      "description": "4 x 2L Air tight Glass Jars \n-R40 each",
+      "status": "available",
+      "category": "Kitchen",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/glass-jars-1/1.jpeg",
+        "images/glass-jars-1/2.jpeg",
+        "images/glass-jars-1/3.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 29
+    },
+    {
+      "id": "29",
+      "title": "4 x 2L Glass Jars",
+      "price": 30,
+      "description": "4 x 2L Glass Jars \n-R30 each",
+      "status": "available",
+      "category": "Kitchen",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/glass-jars-2/1.jpeg",
+        "images/glass-jars-2/2.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 30
+    },
+    {
+      "id": "30",
+      "title": "3 x 2L Glass Jars",
+      "price": 20,
+      "description": "3 x 1L Glass Jars \n-R20 each",
+      "status": "available",
+      "category": "Kitchen",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/glass-jars-3/1.jpeg",
+        "images/glass-jars-3/2.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 31
+    },
+    {
+      "id": "31",
+      "title": "Prestige Electric Chappati Maker",
+      "price": 150,
+      "description": "Prestige Electric Chappati Maker",
+      "status": "available",
+      "category": "Kitchen",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/chappati-maker/1.jpeg",
+        "images/chappati-maker/2.jpeg",
+        "images/chappati-maker/3.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 32
     }
   ]
 }
