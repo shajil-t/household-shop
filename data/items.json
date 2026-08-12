@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T14:14:30.784Z",
+  "generatedAt": "2026-08-12T14:34:44.972Z",
   "count": 39,
   "items": [
     {
@@ -246,7 +246,7 @@
       "title": "HP Computer/Sudy Table",
       "price": 200,
       "description": "Strong and sturdy computer/study table with a convenient pull-out keyboard panel. Comes with wheels for easy movement and a locking system to keep it securely in place. Great for home and study use.",
-      "status": "available",
+      "status": "reserved",
       "category": "Office",
       "condition": "Good",
       "location": "Midrand",
@@ -713,7 +713,7 @@
       "title": "Plastic 3 Drawer Unit Storage",
       "price": 150,
       "description": "Plastic 3 Drawer unit Storage",
-      "status": "available",
+      "status": "reserved",
       "category": "Storage",
       "condition": "Excellent",
       "location": "Midrand",
