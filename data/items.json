@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-11T13:30:16.540Z",
-  "count": 31,
+  "generatedAt": "2026-08-12T14:14:30.784Z",
+  "count": 39,
   "items": [
     {
       "id": "1",
@@ -193,7 +193,7 @@
     {
       "id": "11",
       "title": "2 x 24inch Samsung Monitors",
-      "price": 600,
+      "price": 650,
       "description": "Samsung S24D300 LED computer monitors.\n-HDMI and VGA ports\n-R600 each",
       "status": "available",
       "category": "Accessories",
@@ -263,7 +263,7 @@
     {
       "id": "15",
       "title": "1 x Mecer 21 inch Monitor",
-      "price": 300,
+      "price": 400,
       "description": "Mecer 21.5 inch computer monitor\n- Model A2256",
       "status": "available",
       "category": "Accessories",
@@ -454,7 +454,7 @@
     {
       "id": "25",
       "title": "USHA Thunderbolt 800W Mixer Grider with 3 Jars",
-      "price": 450,
+      "price": 550,
       "description": "USHA Thunderbolt 800W Mixer Grider with 3 Jars",
       "status": "available",
       "category": "Appliances",
@@ -472,7 +472,7 @@
     {
       "id": "26",
       "title": "Wooden Coffee Table",
-      "price": 600,
+      "price": 650,
       "description": "Wooden Coffee Table",
       "status": "available",
       "category": "Furniture",
@@ -491,7 +491,7 @@
     },
     {
       "id": "27",
-      "title": "Samsuung 8kg Top Loader Washing Machine",
+      "title": "Samsung 8kg Top Loader Washing Machine",
       "price": 2000,
       "description": "Samsuung 8kg Top Loader Washing Machine",
       "status": "available",
@@ -578,6 +578,153 @@
       "dateAdded": null,
       "featured": false,
       "order": 32
+    },
+    {
+      "id": "32",
+      "title": "Laundry Basket 65L",
+      "price": 120,
+      "description": "Laundry Basket 65L Plastic",
+      "status": "available",
+      "category": "Kitchen",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/laundry-basket/1.jpeg",
+        "images/laundry-basket/2.jpeg",
+        "images/laundry-basket/3.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 33
+    },
+    {
+      "id": "33",
+      "title": "Refuse Flip Lid Round Bin 50L",
+      "price": 120,
+      "description": "Refuse Flip Lid Round Bin 50L",
+      "status": "available",
+      "category": "Kitchen",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/trash-bin/1.jpeg",
+        "images/trash-bin/2.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 34
+    },
+    {
+      "id": "34",
+      "title": "16inch Bicycle",
+      "price": 250,
+      "description": "16inch Bicycle",
+      "status": "available",
+      "category": "Kids",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/bicycle-16/1.jpeg",
+        "images/bicycle-16/2.jpeg",
+        "images/bicycle-16/3.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 35
+    },
+    {
+      "id": "35",
+      "title": "24 Inch Geared City Road Bicycle",
+      "price": 950,
+      "description": "24 Inch Geared City Road Bicycle",
+      "status": "available",
+      "category": "Kids",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/bicycle-24/1.jpeg",
+        "images/bicycle-24/2.jpeg",
+        "images/bicycle-24/3.jpeg",
+        "images/bicycle-24/4.jpeg",
+        "images/bicycle-24/5.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 36
+    },
+    {
+      "id": "36",
+      "title": "Suede 5 seater recliner couch (3pieces)",
+      "price": 1800,
+      "description": "Suede 5-seater recliner couch - 3 pieces. The couch does need refurbishment, as the seat cushions are slightly sunken, but overall it is in good, sturdy condition. Mechanically, everything works well, with all the recliners functioning properly and the backrests in good condition. Great couch for someone looking to refurbish it and give it a fresh new look",
+      "status": "available",
+      "category": "Furniture",
+      "condition": "Fair",
+      "location": "Midrand",
+      "images": [
+        "images/couch/1.jpeg",
+        "images/couch/2.jpeg",
+        "images/couch/3.jpeg",
+        "images/couch/4.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 37
+    },
+    {
+      "id": "37",
+      "title": "Samsung Vacuum Cleaner",
+      "price": 600,
+      "description": "Powerful and compact corded vacuum cleaner, ideal for everyday household cleaning. It features a 1600W motor that provides strong suction for effective cleaning, along with a convenient automatic cord-rewind function for easy storage. The vacuum comes with a reusable dust bag, which can simply be emptied and cleaned when the full indicator shows that it needs attention. A practical and reliable vacuum for everyday use",
+      "status": "available",
+      "category": "Appliances",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/samsung-vaccum/1.jpeg",
+        "images/samsung-vaccum/2.jpeg",
+        "images/samsung-vaccum/3.jpeg",
+        "images/samsung-vaccum/4.jpeg",
+        "images/samsung-vaccum/5.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 38
+    },
+    {
+      "id": "38",
+      "title": "Shoe Storage Stand",
+      "price": 80,
+      "description": "Shoe Storage Stand",
+      "status": "available",
+      "category": "Storage",
+      "condition": "Good",
+      "location": "Midrand",
+      "images": [
+        "images/shoe-stand/1.jpeg",
+        "images/shoe-stand/2.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 39
+    },
+    {
+      "id": "39",
+      "title": "Plastic 3 Drawer Unit Storage",
+      "price": 150,
+      "description": "Plastic 3 Drawer unit Storage",
+      "status": "available",
+      "category": "Storage",
+      "condition": "Excellent",
+      "location": "Midrand",
+      "images": [
+        "images/storage-rack/1.jpeg",
+        "images/storage-rack/2.jpeg",
+        "images/storage-rack/3.jpeg"
+      ],
+      "dateAdded": null,
+      "featured": false,
+      "order": 40
     }
   ]
 }
